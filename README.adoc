@@ -1,16 +1,16 @@
-= Interval Library for Arduino =
+= ColorConverter Library for Arduino =
 
-This library allows you to set repeating or one-time functions that happen after an interval like in JavaScript. You can use .setInterval() to create a repeating event, and .setTimeout() to create a one-time event. You can also change the interval delay using .setDelay(). Once you've created an interval, you have to continually check it in the main loop using .check(). When the interval has passed, .check will be true.
+This library allows you convert HSI color model values to RGB and RGBW values. I wrote it because I wanted this conversion for programmable LEDs like WS2812 or APA102C as well as for DMX-512 lighting control. It also allows you to convert RGB values to HSI values.
 
+With HSI values, the overall power output of the LED remains constant, and the brightness of the eye remains constant, when fading across hues. This makes for more consistent color fades. For a better explanation, and the example code on which this is based, see http://blog.saikoled.com/post/43693602826/why-every-led-light-should-be-using-hsi[Saiko LED's blog post].
 
 = Commands =
 
-
-== Interval
+== ColorConverter
 
 .Syntax
 ----
-Interval myInterval;
+ColorConverter converter;
 ----
 
 .Parameters
@@ -20,147 +20,87 @@ none
 void
 
 .Notes
-Creates a new interval.
+Creates a new instance of the library.
 
-== setInterval
-
-.Syntax
-----
-myInterval.setInterval(function, delay);
-----
-
-.Parameters
-function - a function to call when the delay passes
-delay (_unsigned long_) - the delay before the function is called.
-
-.Returns
-void
-
-.Notes
-Sets the function to be called when the interval delay passes. When the delay passes, the interval is reset, and starts again.
-
-== setTimeout
+== HSItoRGB
 
 .Syntax
 ----
-myInterval.setTimeout(function, delay);
+converter.HSItoRGB(hue, saturation, intensity);
 ----
 
 .Parameters
-function - a function to call when the delay passes
-delay (_unsigned long_) - the delay before the function is called.
+* hue (_float_) - color hue, 0 to 360 degrees
+* saturation (_float_) - color saturation, 0 to 100
+* intensity (_float_) - color intensity, 0 to 100
 
 .Returns
-void
+RGBColor (_struct_) - a structure containing four ints: red, green, blue, and white. All three or red, green, and blue will range from 0 to 255. For this function, white is always 0.
 
-.Notes
-Sets the function to be called when the interval delay passes. When the delay passes, the interval is stopped.
+.Example
+----
+RGBColor c = converter.HSItoRGB(hue, saturation, intensity);
+Serial.print(c.red);
+Serial.print(" ");
+Serial.print(c.green);
+Serial.print(" ");
+Serial.println(c.blue);
+----
 
-
-== setDelay
+== HSItoRGBW
 
 .Syntax
 ----
-myInterval.setDelay(delay);
+converter.HSItoRGB(hue, saturation, intensity);
 ----
 
 .Parameters
-delay (_unsigned long_) - the delay before the function is called.
+* hue (_float_) - color hue, 0 to 360 degrees
+* saturation (_float_) - color saturation, 0 to 100
+* intensity (_float_) - color intensity, 0 to 100
 
 .Returns
-void
+RGBColor (_struct_) - a structure containing four ints: red, green, blue, and white. All four will range from 0 to 255.
 
-.Notes
-Changes the delay of the interval. Takes effect immediately, so calling setDelay() in the middle of an interval's delay will extend the delay.
+.Example
+----
+RGBColor c = converter.HSItoRGB(hue, saturation, intensity);
+Serial.print(c.red);
+Serial.print(" ");
+Serial.print(c.green);
+Serial.print(" ");
+Serial.print(c.blue);
+Serial.print(" ");
+Serial.print(c.white);
+----
 
-== check
+== RGBtoHSI
 
 .Syntax
 ----
-myInterval.check();
-// or
-unsigned long remaining = myInterval.check();
+converter.RGBtoHSI(red, green,  blue);
 ----
 
 .Parameters
-none
+* red (_int_) - red value, 0 to 255
+* green (_int_) - green value, 0 to 255
+* blue (_int_) - blue value, 0 to 255
 
 .Returns
-remaining (_unsigned long_) - the remaining time before the current delay is over. Reading this return value is optional.
+HSIColor (_struct_) - a structure containing three floats: hue, saturation, and intensity.Hue will range from 0 to 359. Saturation and intensity will range from 0 to 100.
+
+.Example
+----
+HSIColor c = converter.RGBtoHSI(red, green, blue);
+Serial.print(c.hue);
+Serial.print(" ");
+Serial.print(c.saturation);
+Serial.print(" ");
+Serial.println(c.intensity);
+----
 
 .Notes
-Must be called every time through the main loop to update the interval.
 
-== reset
-
-.Syntax
-----
-myInterval.reset();
-----
-
-.Parameters
-none
-
-.Returns
-void
-
-.Notes
-resets the interval to the current millis. Takes effect immediately, so calling setDelay() in the middle of an interval's delay will restart the delay.
-
-
-== stop
-
-.Syntax
-----
-myInterval.stop();
-----
-
-.Parameters
-none
-
-.Returns
-void
-
-.Notes
-Stops the interval. This function stops both recurring intervals (setInterval) and non-recurring intervals (setTimeout).
-
-= Properties =
-
-== repeating
-
-.Syntax
-----
- if (myInterval.repeating == true) {
-   // this is a recurring interval
- };
-----
-
-.Parameters
-none
-
-.Returns
-repeating (_boolean_) - whether or not the interval will repeat
-
-.Notes
-A boolean variable. Determines whether an interval should restart when the delay ends, or whether it should stop.
-
-== done
-
-.Syntax
-----
- if (myInterval.done == true) {
-   // this interval will no longer run
- };
-----
-
-.Parameters
-none
-
-.Returns
-done (_boolean_) - whether or not the interval is done
-
-.Notes
-A boolean variable. Determines whether an interval is done or not.
 
 == License ==
 

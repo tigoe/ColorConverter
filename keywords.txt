@@ -8,16 +8,16 @@
 
 ColorConverter	KEYWORD1
 RGBColor  KEYWORD1
-HSLColor  KEYWORD1
+HSIColor  KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-HSLtoRGB	KEYWORD2
-HSLtoRGBW	KEYWORD2
-RGBtoHSL	KEYWORD2
-RGBWtoHSL KEYWORD2
+HSItoRGB	KEYWORD2
+HSItoRGBW	KEYWORD2
+RGBtoHSI	KEYWORD2
+RGBWtoHSI KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
