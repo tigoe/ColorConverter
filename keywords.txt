@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For ColorConverter
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ColorConverter	KEYWORD1
+RGBColor  KEYWORD1
+HSLColor  KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+HSLtoRGB	KEYWORD2
+HSLtoRGBW	KEYWORD2
+RGBtoHSL	KEYWORD2
+RGBWtoHSL KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
