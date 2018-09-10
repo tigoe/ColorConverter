@@ -6,27 +6,12 @@ With HSI values, the overall power output of the LED remains constant, and the b
 
 = Commands =
 
-== ColorConverter
-
-.Syntax
-----
-ColorConverter converter;
-----
-
-.Parameters
-none
-
-.Returns
-void
-
-.Notes
-Creates a new instance of the library.
 
 == HSItoRGB
 
 .Syntax
 ----
-converter.HSItoRGB(hue, saturation, intensity);
+ColorConverter.HSItoRGB(hue, saturation, intensity);
 ----
 
 .Parameters
@@ -39,7 +24,7 @@ RGBColor (_struct_) - a structure containing four ints: red, green, blue, and wh
 
 .Example
 ----
-RGBColor c = converter.HSItoRGB(hue, saturation, intensity);
+RGBColor c = ColorConverter.HSItoRGB(hue, saturation, intensity);
 Serial.print(c.red);
 Serial.print(" ");
 Serial.print(c.green);
@@ -51,7 +36,7 @@ Serial.println(c.blue);
 
 .Syntax
 ----
-converter.HSItoRGB(hue, saturation, intensity);
+ColorConverter.HSItoRGB(hue, saturation, intensity);
 ----
 
 .Parameters
@@ -64,7 +49,7 @@ RGBColor (_struct_) - a structure containing four ints: red, green, blue, and wh
 
 .Example
 ----
-RGBColor c = converter.HSItoRGB(hue, saturation, intensity);
+RGBColor c = ColorConverter.HSItoRGB(hue, saturation, intensity);
 Serial.print(c.red);
 Serial.print(" ");
 Serial.print(c.green);
@@ -78,7 +63,7 @@ Serial.print(c.white);
 
 .Syntax
 ----
-converter.RGBtoHSI(red, green,  blue);
+ColorConverter.RGBtoHSI(red, green,  blue);
 ----
 
 .Parameters
@@ -91,7 +76,7 @@ HSIColor (_struct_) - a structure containing three floats: hue, saturation, and 
 
 .Example
 ----
-HSIColor c = converter.RGBtoHSI(red, green, blue);
+HSIColor c = ColorConverter.RGBtoHSI(red, green, blue);
 Serial.print(c.hue);
 Serial.print(" ");
 Serial.print(c.saturation);

@@ -11,11 +11,11 @@
 
 */
 
-ColorConverter::ColorConverter() {
+ColorConverterClass::ColorConverterClass() {
   // empty initializer
 }
 
-struct RGBColor ColorConverter::HSItoRGBW(float hue, float saturation, float intensity) {
+struct RGBColor ColorConverterClass::HSItoRGBW(float hue, float saturation, float intensity) {
   struct RGBColor result = {0,0,0,0};        // the RGBW result you'll return
   hue = constrain(hue, 0, 360);              // constrain hue to 0-360
   hue = hue * PI / 180;                      // Convert to radians.
@@ -48,7 +48,7 @@ struct RGBColor ColorConverter::HSItoRGBW(float hue, float saturation, float int
 }
 
 
-struct RGBColor ColorConverter::HSItoRGB(float hue, float saturation, float intensity) {
+struct RGBColor ColorConverterClass::HSItoRGB(float hue, float saturation, float intensity) {
   struct RGBColor result = {0,0,0,0};        // the RGB result you'll return
   hue = constrain(hue, 0, 360);              // constrain hue to 0-360
   hue = hue * PI / 180;                      // Convert to radians.
@@ -81,7 +81,7 @@ struct RGBColor ColorConverter::HSItoRGB(float hue, float saturation, float inte
 }
 
 
-struct HSIColor ColorConverter::RGBtoHSI (int red, int green, int blue) {
+struct HSIColor ColorConverterClass::RGBtoHSI (int red, int green, int blue) {
   struct HSIColor result = {0,0,0};
   // floats for calculating saturation and intensity:
   float sat = 0;
@@ -121,3 +121,5 @@ struct HSIColor ColorConverter::RGBtoHSI (int red, int green, int blue) {
 
   return result;
 }
+
+ColorConverterClass ColorConverter;

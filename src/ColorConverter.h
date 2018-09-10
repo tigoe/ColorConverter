@@ -17,10 +17,10 @@ struct HSIColor {
   float intensity;
 };
 
-class ColorConverter
+class ColorConverterClass
 {
   public:
-    ColorConverter();
+    ColorConverterClass();
     struct RGBColor HSItoRGB(float hue, float saturation, float intensity);
     struct RGBColor HSItoRGBW(float hue, float saturation, float intensity);
     struct HSIColor RGBtoHSI (int red, int green, int blue);
@@ -29,5 +29,7 @@ class ColorConverter
   private:
 
 };
+
+extern ColorConverterClass ColorConverter;
 
 #endif
