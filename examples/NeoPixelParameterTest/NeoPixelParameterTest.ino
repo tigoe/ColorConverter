@@ -31,7 +31,6 @@ void setup() {
   strip.clear();    // turn all LEDs off
   strip.show();     // refresh strip
   Serial.begin(9600);
-  while (!Serial);
 }
 
 void loop() {
