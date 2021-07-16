@@ -22,7 +22,6 @@
 
 #include <ColorConverter.h>
 
-ColorConverter converter;
 void setup() {
   Serial.begin(9600);       // initialize serial communication
   while (!Serial);          // wait until serial monitor is opened
@@ -38,7 +37,7 @@ void loop() {
       float s = Serial.parseInt();
       float i = Serial.parseInt();
       // do the conversion:
-      RGBColor color = converter.HSItoRGB(h, s, i);
+      RGBColor color = ColorConverter.HSItoRGB(h, s, i);
       // print the results:
       Serial.print(color.red);
       Serial.print(" ");
@@ -52,7 +51,7 @@ void loop() {
       float s = Serial.parseInt();
       float i = Serial.parseInt();
       // do the conversion:
-      RGBColor color = converter.HSItoRGBW(h, s, i);
+      RGBColor color = ColorConverter.HSItoRGBW(h, s, i);
       // print the results:
       Serial.print(color.red);
       Serial.print(" ");
@@ -67,7 +66,7 @@ void loop() {
       float g = Serial.parseInt();
       float b = Serial.parseInt();
       // do the conversion:
-      HSIColor color = converter.RGBtoHSI(r, g, b);
+      HSIColor color = ColorConverter.RGBtoHSI(r, g, b);
       // print the results:
       Serial.print(color.hue);
       Serial.print(" ");
